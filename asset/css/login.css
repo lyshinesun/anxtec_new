@@ -1,0 +1,102 @@
+
+#ax_wrap {
+    background: url("../images/login/login_bg.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.login_wrap {
+    margin: 2.6rem auto 0;
+    width: 6rem;
+    height: 4.8rem;
+    z-index: 99;
+    padding: .9rem .7rem;
+    background: url("../images/login/ax_login_icon.png") no-repeat;
+    background-size: 10.5rem 5.3rem;
+    background-position: -.14rem -0.28rem;
+}
+
+.inp_item {
+    height: .8rem;
+    line-height: .8rem;
+    background: url("../images/login/ax_login_icon.png") no-repeat;
+    background-size: 11.65rem 6rem;
+    background-position: -7rem -1.72rem;
+}
+
+.ax_inp {
+    height: 100%;
+    width: 100%;
+    padding-left: 1.2rem;
+    background-color: transparent;
+    color: #fff;
+}
+
+.inp_tit {
+    font-size: .24rem;
+    position: absolute;
+    left: .4rem;
+    top: 0;
+    color: #3acdeb;
+}
+
+.login_add {
+    font-size: .24rem;
+    color: #3acdeb;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.login_btn {
+    display: block;
+    width: 1.6rem;
+    height: .8rem;
+    margin: 0 auto;
+    text-align: center;
+    line-height: .8rem;
+    color: #3acdeb;
+    font-size: .3rem;
+    background: url("../images/login/ax_login_icon.png") no-repeat;
+    background-size: 10.6rem 5.7rem;
+    background-position: -7.1rem -0.18rem;
+}
+
+.login_add_wrap{
+    padding-left: .12rem;
+}
+
+.pass {
+    display: inline-block;
+    vertical-align: middle;
+    width: .26rem;
+    height: .26rem;
+    margin: -.05rem .1rem 0 0 ;
+    background: url("../images/login/ax_login_icon.png") no-repeat;
+    background-size: 9.8rem 5rem;
+    background-position: -8.84rem -0.288rem;
+}
+
+.pass.active {
+    background: url("../images/login/ax_login_icon.png") no-repeat;
+    background-size: 9.8rem 5rem;
+    background-position: -9.44rem -0.288rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

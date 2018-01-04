@@ -1,0 +1,44 @@
+
+.power_warn_ul >li{
+    background-color: #fff;
+    margin-bottom: .3rem;
+}
+
+.wran_head{
+    height:.8rem;
+    line-height: .8rem;
+    background: url("../../images/warn/warn_head.png") no-repeat;
+    background-size: 100% 100% ;
+    text-align: center;
+    font-size: .32rem;
+    color: #30e0fc;
+}
+
+.warn_tit{
+    margin-left: .3rem;
+}
+
+.bor_none{
+    border-bottom: 1px solid #bcbcbc;
+}
+
+.bor_none .warn_detail{
+    border-bottom: none;
+}
+
+.warn_detail{
+    color: #fe2443;
+    margin-left: .4rem;
+    line-height: .72rem;
+    border-bottom: 1px solid #bcbcbc;
+}
+
+.wran_item_con ul{
+    padding-top: .3rem;
+}
+
+.wran_item_con ul li{
+    margin-bottom: .2rem;
+}
+
+

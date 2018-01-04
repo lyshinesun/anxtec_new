@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>安轩h5</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="style/reset.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+</head>
+
+<body>
+
+<!--主体-->
+<div class="all_elements" id="ax_wrap">
+    <div class="content" id="content_tot">
+        <div class="login_wrap">
+            <div class="inp_item mb20 pr">
+                <span class="inp_tit">账号</span>
+                <input class="ax_inp" type="text" name="user" id="user_name" v-model="username" value=""/>
+            </div>
+            <div class="inp_item pr mb20">
+                <span class="inp_tit">密码</span>
+                <input class="ax_inp" type="password" name="password" v-model="password" id="user_pass"/>
+            </div>
+            <div class="login_add_wrap mb30">
+                <a href="javascript:;" class="login_add mr30" id="rem_pass_wrap" @click="change($event)">
+                    <i id="keep_word" class="pass active"></i>记住密码
+                </a>
+                <a href="javascript:;" class="login_add" id="login_auto_wrap" @click="change($event)">
+                    <i class="pass"></i>自动登录
+                </a>
+            </div>
+            <a href="javascript:;" class="login_btn" @click="login">登录</a>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/common/common.js"></script>
+<script src="js/common/esmpbase.js"></script>
+<script src="js/lib/lang.js"></script>
+<script src="js/lib/vlm.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.1.6/vue.min.js"></script>
+<script src="js/lib/ejs.js"></script>
+<script src="js/plugin/jq-cookie/jquery-cookie.js"></script>
+
+<script>
+    new Vue({
+        el: '#ax_wrap',
+        data: {
+            username: '',
+            password: '',
+            errorMsg: ''
+        },
+        beforeCreate: function () {
+            if (self != top) {
+                top.location.href = self.location.href;
+            }
+        },
+        methods: {
+            login: function () {
+                var _this = this;
+                var data = "username=" + this.username + "&password=" + this.password;
+                $.ajax({
+                    type: "POST",
+                    url: vlm.serverAddr + "sys/login",
+                    data: data,
+                    dataType: "json",
+                    success: function (result) {
+                        console.log(result);
+                        if (result.code == 0) {//登录成功
+                            _this.checkInfo();
+                        } else {
+
+                        }
+                    }
+                });
+            },
+
+            //图标切换
+            change:function(e){
+                $(e.currentTarget).find('i').toggleClass('active');
+            },
+
+            //保存用户信息
+            saveUserInfo: function () {
+                if ($("#keep_word").hasClass('active')) {
+                    $.cookie("rmbUser", "true", {expires: 7});
+                    $.cookie("userName", this.username, {expires: 7});
+                    $.cookie("passWord", this.password, {expires: 7});
+                }else{
+                    $.cookie("rmbUser", "false", {expires: -1});
+                }
+            },
+
+            //检测记住用户名
+            checkRem: function () {
+                if ($.cookie("rmbUser") == "true") {
+                    $("#keep_word").addClass('active');
+                    this.username = $.cookie("userName");
+                    this.password = $.cookie("passWord");
+                }else{
+                    $("#keep_word").removeClass('active');
+                    this.username ="";
+                    this.password = "";
+                }
+            },
+
+            //存info
+            checkInfo: function () {
+                var _this = this;
+                $.ajax({
+                    type: "get",
+                    url: vlm.serverAddr + "sys/user/info",
+                    data: "",
+                    dataType: "json",
+                    success: function (res) {
+                        console.log(res);
+                        if (res.code == 0) {//登录成功
+                            window.sessionStorage.userid = res.user.userId;
+                            window.sessionStorage.username = res.user.username;
+                            _this.saveUserInfo();
+                            window.location.href = 'index.html';
+                        } else {
+                            alert('登陆失败');
+                        }
+                    }
+                });
+            }
+        },
+        mounted: function () {
+            this.checkRem();
+        }
+    });
+
+</script>
+
+</body>
+</html>

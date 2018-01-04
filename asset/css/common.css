@@ -1,0 +1,289 @@
+.module{
+    height: 4.5rem;
+    padding: 0 .2rem;
+    margin-bottom: .4rem;
+}
+
+.power_head h3{
+    font-size: .32rem;
+    font-weight: bold;
+    margin-left: .4rem;
+}
+
+.header .header_tit{
+    float: left;
+    margin-left: 42%;
+}
+
+.setting_list {
+    padding: 0 .3rem;
+}
+
+.setting_list > li {
+    line-height: 1.2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.slide_item {
+    width: 5rem;
+    height: 100%;
+    background-color: #3e4759;
+    position: absolute;
+    left: -100%;
+    top: 0;
+    z-index: 110;
+}
+
+.setting_ul {
+    padding: 0 .45rem;
+    color: #fff;
+}
+
+.setting_ul li {
+    padding: 0 .3rem 0 .15rem;
+    border-bottom: 2px solid #5d677f;
+    height: 1rem;
+    line-height: 1rem;
+    position: relative;
+}
+
+.right_white_icon {
+    position: absolute;
+    right: 0rem;
+    top: .33rem;
+    width: .32rem;
+    height: .4rem;
+    background-size: .23rem .35rem;
+}
+
+#index_setting {
+    z-index: 10000;
+    background: #fff;
+    position: absolute;
+    overflow-x: hidden !important;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    left: 100%;
+    display: none;
+}
+
+#index_setting .header {
+    left: 100%;
+}
+
+.header .icon_person {
+    position: absolute;
+    left: .48rem;
+    top: 50%;
+    margin-top: -.2rem;
+    width: .5rem;
+    height: .4rem;
+    background: url(../images/icon_adapt.png) no-repeat;
+    background-size: .6rem .38rem;
+}
+
+.dxlt_title {
+    text-align: center;
+    font-size: .4rem;
+    margin: .5rem 0;
+    color: #fff;
+}
+
+.date_box {
+    background-color: #14487d;
+    padding: .3rem 0 .4rem;
+}
+
+.date_tab {
+    margin: 0 .4rem;
+    height: .8rem;
+    line-height: .8rem;
+    border: 1px solid #fff;
+    border-radius: .2rem;
+    color: #fff;
+}
+
+.date_tab .date_item {
+    width: 33.333%;
+    height: 100%;
+    text-align: center;
+}
+
+.date_tab .date_item:nth-child(2) {
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+.date_tab .date_item.active {
+    background-color: #fff;
+    color: #333;
+}
+
+.dia_calendar {
+    width: 4.6rem;
+    height: .7rem;
+    margin: .7rem auto 0;
+    position: relative;
+}
+
+.date_num {
+    border-radius: .2rem;
+    border: 1px solid #fff;
+    height: 100%;
+    width: 2.85rem;
+    margin: 0 auto;
+    text-align: center;
+    line-height: .7rem;
+    color: #fff;
+    font-size: .3rem;
+    display: block;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.date_num {
+    border-radius: .2rem;
+    border: 1px solid #fff;
+    height: 100%;
+    width: 2.85rem;
+    margin: 0 auto;
+    text-align: center;
+    line-height: .7rem;
+    color: #fff;
+    font-size: .3rem;
+    display: block;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.power_head {
+    height: .8rem;
+    line-height: .8rem;
+    position: relative;
+    box-shadow: 0 2px 10px #ccc;
+}
+
+.power_head_tip{
+    font-size: .24rem;
+    color: #737373;
+    font-weight: normal;
+}
+
+.head_ver_line {
+    position: absolute;
+    left:0;
+    top:0;
+    width: .14rem;
+    height: .8rem;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #020c18;
+}
+
+.tot_power_wrap {
+    height: 5.5rem;
+    padding-top: .65rem;
+    background: url("../images/index/index_top_bg.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.tot_power_wrap h2 {
+    font-size: .28rem;
+    color: #3795d1;
+    text-align: center;
+    margin: .1rem 0 .45rem;
+}
+.power_number {
+    font-size: .7rem;
+    /*浏览器私有前缀*/
+    -webkit-text-fill-color:#0a3765;/*伪空心的文字，与背景色有关*/
+    -webkit-text-stroke-color:#30e0fc;
+    -webkit-text-stroke-width:1px;
+    /*W3C标准*/
+    text-fill-color:#0a3765;
+    text-stroke-color:#30e0fc;
+    text-stroke-width:1px;
+    font-weight: bold;
+    text-shadow: 0 0 1rem #fff;
+
+    padding-top: .25rem;
+    text-align: center;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.tot_power_wrap .power_unit {
+    font-size: .24rem;
+}
+
+.power_day_number {
+    width: 50%;
+    text-align: center;
+}
+
+.power_day_number > span {
+    color: #338ac2;
+    text-align: center;
+    display: block;
+    height: .42rem;
+    line-height: .42rem;
+}
+
+.power_nums {
+    font-size: .4rem;
+    /*浏览器私有前缀*/
+    -webkit-text-fill-color:#0a3765;/*伪空心的文字，与背景色有关*/
+    -webkit-text-stroke-color:#30e0fc;
+    -webkit-text-stroke-width:1px;
+    /*W3C标准*/
+    text-fill-color:#0a3765;
+    text-stroke-color:#30e0fc;
+    text-stroke-width:1px;
+    text-shadow: 0 0 .6rem #fff;
+}
+
+.tot_introduct_wrap {
+    height: 2rem;
+    margin-bottom: .2rem;
+    position: relative;
+}
+
+.introduct_item {
+    width: 33.3333%;
+    padding-top: .5rem;
+    text-align: center;
+}
+
+.introduct_item > span {
+    font-size: .28rem;
+    margin: .1rem 0 .2rem;
+    display: block;
+    color: #3795d1;
+}
+
+.introduct_item > em {
+    font-size: .34rem;
+    /*浏览器私有前缀*/
+    -webkit-text-fill-color:#0a3765;/*伪空心的文字，与背景色有关*/
+    -webkit-text-stroke-color:#30e0fc;
+    -webkit-text-stroke-width:1px;
+    /*W3C标准*/
+    text-fill-color:#0a3765;
+    text-stroke-color:#30e0fc;
+    text-stroke-width:1px;
+    text-shadow: 0 0 .2rem #fff;
+    display: block;
+    margin: 0 auto;
+}
+
+.introduct_item i {
+    width: .6rem;
+    height: .6rem;
+    display: block;
+    margin: 0 auto;
+    vertical-align: middle;
+}

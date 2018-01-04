@@ -1,0 +1,247 @@
+
+.dia_bot {
+    height: 8.3rem;
+    padding-top: .8rem;
+    background: url(../../images/detail/bot_bg.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.hc_wrap {
+    margin-bottom: .4rem;
+}
+
+.wet_out {
+    height: 3.2rem;
+}
+
+.wet_in_wrap {
+    position: absolute;
+    left: 50%;
+    top: .42rem;
+    margin-left: -1.2rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.wet_in_bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../../images/detail/wet_in_bg.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.wet_num {
+    color: #e2e3ee;
+    padding-top: .5rem;
+    font-size: .7rem;
+    position: relative;
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#f3f4f8), to(#9b9db5));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.wet_tit {
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: .1rem;
+    font-size: .28rem;
+    color: #fff;
+}
+
+.envir_wrap {
+    width: 4.6rem;
+    height: 1.3rem;
+    display: block;
+    margin: 0 auto .8rem;
+    background: url("../../images/detail/envir_icon.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.envir_wrap_four{
+    width: 6.5rem;
+    height: 1.3rem;
+    display: block;
+    margin: .4rem auto .8rem;
+    background: url("../../images/detail/bot_four.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.envir_wrap_four span{
+    width: 25%;
+    text-align: center;
+    line-height: .6rem;
+    color: #fff;
+    font-size: .25rem;
+    text-align: center;
+    font-size: .24rem;
+    color: #fff;
+}
+
+.envir_head_wrap > span,.envir_bot_wrap > span {
+    width: 33.3333%;
+    text-align: center;
+    line-height: .6rem;
+    color: #fff;
+    font-size: .25rem;
+}
+
+.en_temp{
+    width:5.92rem;
+    margin: 0 auto;
+}
+
+.en_temp_bot{
+    height:.42rem;
+    width:100%;
+    background: url("../../images/detail/temp_kd.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    margin-top: .2rem;
+}
+
+.temp_text{
+    color: #fff;
+}
+.temp_text.devMode {
+    font-size: .3rem
+}
+
+.temp_status{
+    position: absolute;
+    left:0;
+    top:0;
+    width:50%;
+    height:.4rem;
+}
+
+.temp_sta_bar{
+    display: block;
+    width:100%;
+    height:.16rem;
+    border-radius: .08rem;
+    background:-webkit-linear-gradient(left,#0072e0,#67e8fc);
+}
+
+.temp_end{
+    width:.4rem;
+    height:.4rem;
+    background: url("../../images/detail/base_icon.png") no-repeat;
+    position: absolute;
+    right: -.08rem;
+    top: -.08rem;
+    background-size: 100% 100%;
+
+}
+
+.switch_wrap{
+    position: relative;
+    width: 5rem;
+    height: 4rem;
+    margin: 0 auto;
+    background: url("../../images/detail/switch_bg.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.bot_list_wrap{
+    background: url(../../images/detail/bot_bg.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.right_arr{
+    width:.4rem;
+    height:.4rem;
+    background: url("../../images/detail/right_arrow.png") no-repeat center;
+    position: absolute;
+    right:1.2rem;
+    top: .26rem;
+    background-size: .32rem .38rem;
+    transition: .3s all ease;
+}
+
+.right_arr.down{
+    background: url("../../images/detail/down_arrow.png") no-repeat center;
+    background-size: .4rem .26rem;
+    transition: .5s all ease;
+}
+.bot_imte_head{
+    background-color: #0C496F;
+    height:.9rem;
+    line-height: .9rem;
+    text-align: center;
+    color: #fff;
+    border-bottom: 1px solid #000;
+    margin-bottom: .5rem 
+}
+.bot_imte_head select {
+    /*width: 70%;*/
+    width: auto;
+    height: 78%;
+    /*background: url("../../images/detail/rbtName_bg.png") no-repeat center;*/
+    background: rgba(0,0, 0, 0);
+    color: #fff;
+    font-size: .32rem;
+    padding: 0px 24%;
+    margin: 0;
+    line-height: .68rem
+}
+option {
+    /*background-color: #0C496F;*/
+    opacity: .4;
+    text-align: center;
+}
+
+.bot_imte_cont{
+    /*display: none;*/
+    margin-bottom: .4rem;
+}
+
+.turn_off,  .turn_on, .turn_over, .turn_on_down {
+    display: block;
+    position: absolute;
+}
+.turn_off {
+    width: 1rem;
+    height: 1.6rem;
+    top: 1.25rem;
+    left: .3rem;
+    background: url("../../images/detail/stop_up.png") no-repeat center;
+    /*background-size: contain;*/
+    background-size: 62%;
+
+}
+.turn_off_down {
+    background: url("../../images/detail/stop_down1.png") no-repeat center;
+    /*background-size: contain;*/
+    background-size: 62%;
+}
+.turn_on {
+    width: 2.1rem;
+    height: 2.1rem;
+    top: .95rem;
+    left: 1.44rem;
+    /*background-color: blue*/
+    background: url("../../images/detail/start_up.png") no-repeat;
+    background-size: 100% 100%;
+}
+.turn_on_down {
+    background: url("../../images/detail/start_down.png") no-repeat;
+    background-size: 100% 100%;
+}
+.turn_over {
+    width: 1rem;
+    height: 1.6rem;
+    top: 1.22rem;
+    left: 3.8rem;
+    background: url("../../images/detail/return_up.png") no-repeat center;
+    background-size: 80% 70%;
+}
+.turn_over_down {
+    background: url("../../images/detail/return_down.png") no-repeat center;
+    background-size: 80% 70%;
+}

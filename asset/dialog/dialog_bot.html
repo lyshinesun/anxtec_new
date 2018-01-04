@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>环境监测详情</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="stylesheet" href="../style/reset.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="css/dia_bot.css"/>
+</head>
+<body style="background-color: #020c18">
+<div id="preloader">
+    <div id="status"></div>
+</div>
+
+<div class="all_elements" id="dia_bot">
+    <div class="content">
+        <div class="header">
+            <a href="javascript:history.go(-1);" class="header_back">
+                <i class="icon_back"></i>
+                <span class="back_tip">返回</span>
+            </a>
+            <h3 v-text="fdDevName"></h3>
+        </div>
+        <section class="dia_bot mb20">
+            <div class="pr hc_wrap">
+                <div id="humidity" class="wet_out"></div>
+                <div class="wet_in_wrap">
+                    <div class="wet_in_bg"></div>
+                    <div class="wet_num">
+                        <span v-text="dust + '%'"></span>
+                    </div>
+                    <i class="wet_tit">灰尘量</i>
+                </div>
+            </div>
+            <div class="envir_wrap">
+                <div class="clearfix envir_head_wrap">
+                    <span class="fl">环境温度</span>
+                    <span class="fl">降雨量</span>
+                    <span class="fl">光照度</span>
+                </div>
+                <div class="clearfix envir_bot_wrap">
+                    <span class="fl" v-text="temperature + '°'"></span>
+                    <span class="fl" v-text="rainfall + 'ml'"></span>
+                    <span class="fl" v-text="illumination + 'LUX'"></span>
+                </div>
+            </div>
+
+            <div class="en_temp">
+                <span class="temp_text">环境温度</span>
+                <div class="en_temp_bot">
+                    <div class="en_temp_bg"></div>
+                    <span class="temp_status">
+                        <span class="temp_sta_bar">
+                            <i class="temp_end"></i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="bot_list_wrap">
+            <!-- <ul id="bot_ul">
+                <li class="bot_item" v-for="item in resList">
+                    <div class="bot_imte_head pr">
+                        <span v-text="item.fdDevName"></span>
+                        <i class="right_arr"></i>
+                    </div>
+                    <div class="bot_imte_cont">
+                        <div class="switch_wrap">
+                            <span class="turn_off" id="turn_off" @touchstart = "turnOff($event)" @touchend = "turnOffEnd($event,item)"></span>
+                            <span class="turn_on" id="turn_on" @touchstart = "turnOn($event)" @touchend = "turnOnEnd($event,item)"></span>
+                            <span class="turn_over" id="turn_over" @touchstart = "turnOver($event)" @touchend = "turnOverEnd($event,item)"></span>
+                        </div>
+                        <div class="envir_wrap_four">
+                            <div class="clearfix">
+                                <span class="fl">毛刷清扫时长</span>
+                                <span class="fl">清扫次数</span>
+                                <span class="fl">报警状态</span>
+                                <span class="fl">电池充放次数</span>
+                            </div>
+                            <div class="clearfix envir_bot_four">
+                                <span class="fl">2h</span>
+                                <span class="fl">6次</span>
+                                <span class="fl">正常</span>
+                                <span class="fl">51</span>
+                            </div>
+                        </div>
+                        <div class="en_temp">
+                            <span class="temp_text">设备状态:</span>
+                            <span class="temp_text devMode">正常</span>
+                        </div>
+                    </div>
+                </li>
+            </ul> -->
+                <div class="bot_item">
+                    <div class="bot_imte_head pr">
+                        <select v-model="fdDevAddr">
+                            <option v-for="item in resList" :value="item.fdDevAddr" v-text="item.fdDevName" ></option>
+                        </select>
+                        <i class="right_arr down"></i>
+                    </div>
+                    <div class="bot_imte_cont">
+                        <div class="switch_wrap">
+                            <span class="turn_off" id="turn_off" @touchstart = "turnOff($event)" @touchend = "turnOffEnd($event)"></span>
+                            <span class="turn_on" id="turn_on" @touchstart = "turnOn($event)" @touchend = "turnOnEnd($event)"></span>
+                            <span class="turn_over" id="turn_over" @touchstart = "turnOver($event)" @touchend = "turnOverEnd($event)"></span>
+                        </div>
+                        <div class="envir_wrap_four">
+                            <div class="clearfix">
+                                <span class="fl">毛刷清扫时长</span>
+                                <span class="fl">清扫次数</span>
+                                <span class="fl">报警状态</span>
+                                <span class="fl">电池充放次数</span>
+                            </div>
+                            <div class="clearfix envir_bot_four">
+                                <span class="fl" v-text='sweepTime'></span>
+                                <span class="fl" v-text='cleanCount'></span>
+                                <span class="fl" v-text='equipmentAlarm'></span>
+                                <span class="fl" v-text='exChargingTimes'></span>
+                            </div>
+                        </div>
+                        <div class="en_temp">
+                            <span class="temp_text">设备状态:</span>
+                            <span class="temp_text devMode" v-text="runningState"></span>
+                            <span class="temp_text" style="margin-left: .8rem;">电池余量:</span>
+                            <span class="temp_text devMode" v-text="batteryCapacity !== '无' ? (batteryCapacity + '%') : batteryCapacity"></span>
+                            <!-- <div class="en_temp_bot">
+                                <div class="en_temp_bg"></div>
+                                <span class="temp_status">
+                                    <span class="temp_sta_bar">
+                                        <i class="temp_end"></i>
+                                    </span>
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+                <div>
+        </section>
+    </div>
+</div>
+
+<!-- <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+<script src="../js/common/common.js"></script>
+<script src="../js/common/esmpbase.js"></script>
+<script src="../js/lib/lang.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/vue.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/plugin/echarts_new/echarts.min.js"></script>
+<script src="../js/plugin/echart/echarts.js"></script>
+<script src="js/dia_bot.js"></script>
+</body>
+</html>

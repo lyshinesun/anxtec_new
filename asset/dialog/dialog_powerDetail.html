@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>电站详情</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="stylesheet" href="../style/reset.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="css/dia_powerDetail.css"/>
+</head>
+
+<body>
+<div id="preloader" style="display: none">
+    <div id="status"></div>
+</div>
+
+<div class="all_elements" id="dia_powerDetail">
+    <div class="content">
+        <div class="header">
+            <a href="javascript:history.go(-1);" class="header_back">
+                <i class="icon_back"></i>
+                <span class="back_tip">返回</span>
+            </a>
+            <h3 v-text="fdStationName"></h3>
+        </div>
+        <section class="tot_power_wrap mb20" v-if='hasPsData'>
+            <div class="power_number" v-text="powerAll"></div>
+            <h2>累计发电量<span class="power_unit">(万kWh)</span></h2>
+            <div class="power_number_wrap">
+                <div class="clearfix power_top_wrap">
+                    <div class="fl power_day_number">
+                        <span class="mb5 power_nums" v-text="powerAll"></span>
+                        <span class="power_title">当年发电量<i class="font24"> (万kWh)</i></span>
+                    </div>
+                    <div class="fr power_day_number">
+                        <span class="mb5 power_nums" v-text="powerDay"></span>
+                        <span class="power_title">当日发电量<i class="font24"> (万kWh)</i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tot_introduct_wrap clearfix">
+                <div class="introduct_item fl">
+                    <em v-text="fdStationCapacity+'MW'"></em>
+                    <span>电站容量</span>
+                </div>
+                <div class="introduct_item fl">
+                    <em v-text="pCount+'台'"></em>
+                    <span>清洗机器人</span>
+                </div>
+                <div class="introduct_item fl">
+                    <em v-text="sysCount+'台'"></em>
+                    <span>环境监测系统</span>
+                </div>
+            </div>
+        </section>
+        <section class="tot_power_wrap mb20" v-else>
+            <div class="power_number" v-text="fdStationName" style="padding-top: .75rem"></div>
+        </section>
+        <div id="power_schedule_chart" class="power_section bg_white" v-show="hasPsData">
+            <div class="power_head clearfix">
+                <span class="head_ver_line"></span>
+                <h3>当日发电趋势</h3>
+            </div>
+            <div id="dayEchart" class="module bg_white"></div>
+        </div>
+        <div id="power_promote_compare" class="power_section bg_white" v-show="hasPsData">
+            <div class="power_head clearfix">
+                <span class="head_ver_line"></span>
+                <h3 class="fl">效益提升对比</h3>
+                <select name="psFacory" class="facSlecct fr">
+                    <option value="月"></option>
+                    <!-- <option value="日"></option>
+                    <option value="年"></option> -->
+                    <i class="right_arr downD"></i>
+                </select>
+            </div>
+            <div id="compareEchart" class="module bg_white"></div>
+        </div>
+        <section class="power_section bg_white">
+            <div class="power_head clearfix">
+                <span class="head_ver_line"></span>
+                <h3>清洗机器人分布</h3>
+            </div>
+            <div class="station_desc">
+                <div class="img_des_main">
+                    <img src="../images/wd.png" alt=""/>
+                </div>
+                <!-- <div class="factory_title">详细列表</div>
+                <ul class="factory_ul">
+                    <li v-for="(item,index) in resList">
+                        <div class="fac_item_head">
+                            <span v-text="item.fdDevName"></span><i></i>
+                        </div>
+                        <div class="fac_item_sub" v-for="part in item.list">
+                            <a :href="'dialog_bot.html?stationId='+item.fdDevParentId+'&fdDevCode='+part.fdDevCode + '&rbtDtu=' + part.fdDevAddr + '&port=' + fdCity" v-text="part.fdDevName"></a>
+                        </div>
+                    </li>
+                </ul> -->
+            </div>
+        </section>
+        <section class="power_section bg_white">
+            <div class="power_head clearfix">
+                <span class="head_ver_line"></span>
+                <h3 class="fl">选择厂房</h3>
+                <select name="psFacory" class="facSlecct fr" v-model="fdDevAddr">
+                    <option v-for="item in resList" :value="item.fdDevAddr"  v-text="item.fdDevName"></option>
+                    <!-- <option value="1">参观样机2</option> -->
+                </select>
+                <i class="right_arr downD"></i>
+            </div>
+            <!-- <div class="factory_title">详细列表</div>
+            <ul class="factory_ul">
+                <li v-for="(item,index) in resList">
+                    <div class="fac_item_head">
+                        <span v-text="item.fdDevName"></span><i></i>
+                    </div>
+                    <div class="fac_item_sub" v-for="part in item.list">
+                        <a :href="'dialog_bot.html?stationId='+item.fdDevParentId+'&fdDevCode='+part.fdDevCode + '&rbtDtu=' + part.fdDevAddr + '&port=' + fdCity" v-text="part.fdDevName"></a>
+                    </div>
+                </li>
+            </ul> -->
+            <div class="station_section_list">
+                <ul id="station_ul" class="state_ul clearfix" >
+                    <li v-for="item in envrmtBoxList">
+                        <a :href="'dialog_bot.html?stationId='+ stationId +'&fdDevCode=' + item.fdDevCode + '&rbtDtu=' + item.fdDevAddr + '&port=' + fdCity + '&fdDevName=' + item.fdDevName" class="clearfix">
+                            <div class="fl station_li_left">
+                                <!-- <i :class="'bot_tip pstype_' + station.psType"></i> -->
+                                <div class="pr img_wrap_box">
+                                    <img src="../images/detail/envrmt_box.png" class="bot_img" />
+                                </div>
+                                <span class="station_name" v-text="item.fdDevName"></span>
+                            </div>
+                            <ul class="station_li_right fl" v-if="item.list">
+                                
+                                <!-- <li v-for="info in item.list" ><span v-if="info.fdValueType == 830" v-text="'当前温度:'  + info.fdValue + '°'"></span></li>
+                                <li v-for="info in item.list" ><span v-if="info.fdValueType == 831" v-text="'当前湿度:'  + info.fdValue + '%'"></span></li>
+                                <li v-for="info in item.list"><span  v-if="info.fdValueType == 84" v-text="'当前光照度:'  + info.fdValue + 'LUX'"></span></li>
+                                <li><span v-text="'机器人数量:' + item.rotCount"></span></li> -->
+                                <li><span v-text="'当前温度：'  + item.list.currTemp + '°'"></span></li>
+                                <li><span v-text="'当前湿度：'  + item.list.currHumidity + '%'"></span></li>
+                                <li><span v-text="'当前光照度：'  + item.list.currLllum + 'LUX'"></span></li>
+                                <li>机器人数量 : <span v-text="item.rotCount ? item.rotCount : 0"></span></li>
+                                <i class="right_arr rightD"></i>
+                            </ul>
+                            <ul class="station_li_right fl" v-else>
+                                <li><span>当前温度:无</span></li>
+                                <li><span>当前湿度:无</span></li>
+                                <li><span>当前光照度:无 </span></li>
+                                <li>机器人数量 : <span v-text="item.rotCount ? item.rotCount : 0"></span></li>
+                                <i class="right_arr rightD"></i>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </section>
+        <section class="power_section bg_white">
+            <div class="power_head clearfix">
+                <span class="head_ver_line"></span>
+                <h3>电站介绍</h3>
+            </div>
+            <div class="station_desc">
+                <div class="img_des_main">
+                    <img :src="fdPicPhyAddr" alt=""/>
+                </div>
+                <p class="station_int_text" v-text="fdStationDesc"></p>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/common/esmpbase.js"></script>
+<script src="../js/lib/lang.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.1.6/vue.min.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/plugin/echarts_new/echarts.min.js"></script>
+<script src="../js/plugin/echart/echarts.js"></script>
+<script src="js/dia_powerDetail.js"></script>
+
+</body>
+</html>

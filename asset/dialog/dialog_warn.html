@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>告警</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="stylesheet" href="../style/reset.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/plugin/scroller/mobiscroll.css"/>
+    <link rel="stylesheet" href="../css/plugin/scroller/mobiscroll_002.css"/>
+    <link rel="stylesheet" href="css/dia_powerTrend.css"/>
+</head>
+
+<body>
+<div id="preloader" style="display: none">
+    <div id="status"></div>
+</div>
+
+<div class="all_elements" id="dia_warn">
+    <div class="content">
+        <div class="header">
+            <a href="../index.html" class="header_back">
+                <i class="icon_back"></i>
+                <span class="back_tip">返回</span>
+            </a>
+
+            <h3>告警</h3>
+            <!--<a href="javascript:;" class="header_search">-->
+            <!--<i class="icon_search"></i>-->
+            <!--</a>-->
+        </div>
+        <div class="power_trend_wrap">
+            <ul class="power_warn_ul" id="power_warn_list">
+                <li>
+                    <div class="wran_head">高密电站</div>
+                    <div class="wran_item_con">
+                        <ul>
+                            <li>
+                                <span class="warn_tit">1、XX机器人</span>
+                                <div class="warn_detail">故障详情：<span>机器人故障停机</span></div>
+                            </li>
+                            <li class="bor_none">
+                                <span class="warn_tit">2、XX机器人</span>
+                                <div class="warn_detail">故障详情：<span>机器人故障停机</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="footer" id="power_foot" @click="footTab($event)">
+    <a class="power_home" href="../index.html"><i class="icon_power"></i>首页</a>
+    <a class="power_station" href="../power_station.html"><i class="icon_power"></i>电站</a>
+    <a class="power_map" href="../power_map.html"><i class="icon_power"></i>地图</a>
+    <a class="power_analysis on" href="../dialog/dialog_warn.html?trendType=day"><i class="icon_power"></i>告警</a>
+</div>
+
+<script type="text/template" id="powerTrend_tpl">
+    <%for(var i=0;i< listArr.length; i++){ %>
+    <li>
+        <span><%=listArr[i].fd_station_name%></span>
+        <span><%=listArr[i].fd_power_day%></span>
+        <span><%=listArr[i].fd_pw_curr%></span>
+    </li>
+    <% } %>
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/common/esmpbase.js"></script>
+<script src="../js/lib/lang.js"></script>
+<script src="../js/lib/DateUtil.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.1.6/vue.min.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="js/dia_warn.js"></script>
+
+</body>
+</html>

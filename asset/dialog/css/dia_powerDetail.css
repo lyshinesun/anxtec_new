@@ -1,0 +1,186 @@
+.station_desc {
+    padding-top: .3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.img_des_main{
+    padding: 0 .3rem;
+}
+
+.station_desc img {
+    max-height: 4rem;
+    margin-bottom: .3rem;
+}
+
+.station_int_text {
+    text-indent: 2em;
+    margin-bottom: .4rem;
+    padding: 0 .3rem;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.station_inverter {
+    padding: 0 .3rem .3rem .6rem;
+    background-color: #fff;
+}
+
+.station_inverter img {
+    height: 3.6rem;
+}
+
+.station_inverter h3 {
+    height: 1rem;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+.gps_icon {
+    position: absolute;
+    left: 3.8rem;
+    top: 2rem;
+    width: .5rem;
+    height: .76rem;
+    background: url("../../images/detail/gps_icon.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.factory_ul > li {
+
+}
+
+.factory_title {
+    height: .6rem;
+    line-height: .6rem;
+    padding: 0 .3rem;
+    background-color: #e6e6e6;
+    border-top: 1px solid #bcbcbc;
+    border-bottom: 1px solid #bcbcbc;
+}
+
+
+.fac_item_sub{
+    border-top:1px solid #bcbcbc;
+}
+
+.fac_item_head {
+    padding-left: .6rem;
+    height:.8rem;
+    line-height: .8rem;
+    position: relative;
+}
+
+.fac_item_head i{
+    width:.4rem;
+    height:.4rem;
+    background: url("../../images/detail/right_arrow_black.png") no-repeat center;
+    position: absolute;
+    right:.4rem;
+    top:.22rem;
+    background-size: .26rem .4rem;
+    transition: .2s all ease;
+}
+
+.fac_item_head i.down{
+    background: url("../../images/detail/down_arrow_black.png") no-repeat center;
+    background-size: .4rem .26rem;
+}
+
+.fac_item_sub{
+    display: none;
+}
+
+.fac_item_sub >a{
+    text-align: center;
+    display: block;
+    line-height: .8rem;
+    background-color: #f3f3f3;
+    color: #333;
+    border-bottom: 1px solid #bcbcbc;
+}
+
+.fac_item_sub >a:hover{
+    background-color: #ccc;
+}
+
+.power_section {
+    position: relative;
+    padding-bottom: .2rem;
+    margin-bottom: .2rem;
+    border-top:1px solid #bcbcbc;
+    border-bottom: 1px solid #bcbcbc;
+}
+
+.station_section_list{
+    border-top:1px solid #d2d2d2;
+    background-color: #fff;
+}
+.state_ul > li {
+    border-bottom: 1px solid #e7e7e7;
+}
+.state_ul .bot_img {
+    width: 1.55rem;
+    height:1.55rem;
+}
+.station_li_left {
+    width: 40%;
+    padding: .3rem 0 0 0;
+    text-align: center;
+    position: relative;
+    /*border-right: 1px solid #d2d2d2;*/
+}
+.station_name {
+    /*color: #5ec0dc;*/
+    vertical-align: middle;
+    font-size: .3rem;
+}
+.station_li_right {
+    width: 60%;
+    padding: .3rem 0 0 0;
+    line-height: .5rem;
+    /*text-align: center;*/
+    border-left: 1px solid #d2d2d2;
+}
+.station_li_right li {
+    margin-left: .8rem
+}
+.state_ul a {
+    color: #333;
+}
+.facSlecct {
+    font-size: .28rem;
+    margin-right: .8rem;
+    height: 100%;
+}
+.right_arr.downD {
+    width: .8em;
+    height: .15rem;
+    background: url("../../images/detail/down_arrow_black.png") no-repeat center;
+    position: absolute;
+    right: 0.3rem;
+    top: .34rem;
+    background-size: .25rem .2rem;
+}
+.right_arr.rightD {
+    float: right;
+    width: .2rem;
+    height: .2rem;
+    background: url(../../images/detail/right_arrow_black.png) no-repeat center;
+    /* position: absolute; */
+    position: relative;
+    /* right: 0.3rem; */
+    /* top: .34rem; */
+    background-size: .18rem .2rem;
+    top: -1.1rem;
+    left: -0.3rem;
+    z-index: 9999;
+}
+#compareEchart {
+    background: url(../../images/detail/promote_compare.png) no-repeat center;
+    background-size: 98% 93%;
+    margin: .4rem .2rem .15rem .28rem;
+}
+#dayEchart {
+    margin: .15rem 0
+}

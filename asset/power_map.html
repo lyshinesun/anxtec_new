@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>电站地图</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="style/reset.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/power_station.css"/>
+</head>
+
+<body>
+<div id="preloader">
+    <div id="status"></div>
+</div>
+
+<!--主体-->
+<div class="all_elements" id="station_map">
+    <div class="content" id="content_tot" style="height:100%; position: relative">
+        <div class="header" id="head_tot">
+            <h3>地图分布</h3>
+        </div>
+        <section class="station_powermsg">
+            <h3 class="clearfix">电站名称：<span v-text="fdStationName"></span><a @click="linkDet($event)" href="javascript:;" class="det_link fr">></a></h3>
+            <ul class="station_powermsg_ul">
+                <li>
+                    <span>今日发电 : </span>
+                    <span v-text="powerDay">--</span>
+                    <span>万kWh</span>
+                </li>
+                <li>
+                    <span>累计发电 : </span>
+                    <span v-text="powerAll">--</span>
+                    <span>万kWh</span>
+                </li>
+                <li>
+                    <span>当前功率 : </span>
+                    <span v-text="pwCuur">--</span>
+                    <span>kW</span>
+                </li>
+            </ul>
+        </section>
+        <div id="power_map" ></div>
+    </div>
+</div>
+
+<div class="footer" id="power_foot" @click="footTab($event)">
+    <a class="power_home" href="index.html"><i class="icon_power"></i>首页</a>
+    <a class="power_station" href="power_station.html"><i class="icon_power"></i>电站</a>
+    <a class="power_map on" href="power_map.html"><i class="icon_power"></i>地图</a>
+    <a class="power_analysis" href="dialog/dialog_warn.html"><i class="icon_power"></i>告警</a>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<script src="js/common/common.js"></script>
+<script src="js/common/esmpbase.js"></script>
+<script src="js/lib/lang.js"></script>
+<script src="js/lib/vlm.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.1.6/vue.min.js"></script>
+<script src="js/lib/ejs.js"></script>
+<script src="js/plugin/echarts_new/echarts.min.js"></script>
+<script src="js/plugin/echart/echarts.js"></script>
+
+<script src="http://api.map.baidu.com/api?v=2.0&ak=MhuuVxziXcOqWUAZ5vVEd4GBUdnZj0yO"></script>
+<script src="js/power_map.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>

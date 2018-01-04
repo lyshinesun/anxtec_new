@@ -1,0 +1,444 @@
+/*
+ *===============================================
+ *@desc  default style reset
+ *@author  Jason
+ *@time 2016-05-03
+ *===============================================
+ */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", "Helvetica Neue", Helvetica, tahoma, arial, Verdana, sans-serif, "WenQuanYi Micro Hei", "\5B8B\4F53";
+    background: #eee;
+    font-size: 0.28rem;
+}
+
+::scrollbar {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dd {
+    margin: 0;
+    font-weight: normal;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+i,
+em {
+    font-style: normal;
+}
+
+* {
+    appearance: normal;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+    font-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+}
+
+:focus {
+    outline: 0
+}
+
+/*
+ *==============================================
+ *@desc  responsive media query: iphones6+ 414*736 iphone6 375*667 iphone5s 320*568 iphone5 320*568
+ *@author  Qzz
+ *@time 2017-02-20
+ *=============================================
+ */
+
+@media only screen and (min-width: 240px) {
+    html {
+        font-size: 266.66666666%;
+    }
+}
+
+/* 42.6666666px */
+
+@media only screen and (min-width: 320px) {
+    html {
+        font-size: 266.66666666%;
+    }
+}
+
+/* 42.6666666px */
+
+@media only screen and (min-width: 360px) {
+    html {
+        font-size: 300%;
+    }
+}
+
+/* 48px */
+
+@media only screen and (min-width: 375px) {
+    html {
+        font-size: 312.5%;
+    }
+}
+
+/* 50px */
+
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 345%;
+    }
+}
+
+/* 55.2px */
+
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 400%;
+    }
+}
+
+/* 64px */
+
+@media only screen and (min-width: 640px) {
+    html {
+        font-size: 533.3333333333%;
+    }
+}
+
+/* 85.33333px */
+
+@media only screen and (min-width: 750px) {
+    html {
+        font-size: 625%;
+    }
+}
+
+/* 1rem = 100px */
+
+/*
+ *==============================================
+ *@desc global css
+ ×@author Jason
+ *@time
+ *==============================================
+ */
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.pr{
+    position: relative;
+}
+
+.clearfix {
+    overflow: hidden;
+    _height: 1%;
+}
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    zoom: 1;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*======================================loading start==========================================*/
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: .3;
+    z-index: 99999999;
+}
+
+#status {
+    z-index: 99999999;
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-image: url(../images/loading.gif);
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -125px 0 0 -125px;
+}
+
+/*======================================loading end==========================================*/
+
+/*===============================all elements, header, site right starts===============================*/
+
+.all_elements {
+    position: absolute;
+    overflow-x: hidden !important;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    font-size: .28rem;
+    color: #333;
+    -webkit-overflow-scrolling: touch;
+    /*
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+*/
+}
+
+.header {
+    height: .88rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: all;
+    z-index: 9999;
+    background-color: #0b2035;
+}
+
+.header .header_back {
+    position: absolute;
+    height: 100%;
+    width: 1.6rem;
+    left: 0;
+}
+
+.header .icon_back {
+    position: absolute;
+    left: .48rem;
+    top: 60.5%;
+    margin-top: -.22rem;
+    width: .5rem;
+    height: .4rem;
+    background: url(../images/leftArrow.png) no-repeat;
+    background-size: .26rem .3rem;
+}
+
+.back_tip {
+    color: #fff;
+    display: block;
+    line-height: .88rem;
+    text-align: right;
+    font-size: .32rem;
+}
+
+.header h3 {
+    color: #fff;
+    text-align: center;
+    line-height: .88rem;
+    height: 0.88rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 1.15rem;
+    white-space: nowrap;
+    font-size: 0.36rem;
+}
+
+.header .header_search {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 1.2rem;
+    line-height: .88rem;
+    text-align: center;
+}
+
+.header .icon_search {
+    display: inline-block;
+    vertical-align: middle;
+    width: .5rem;
+    height: .5rem;
+    background: url('../images/search.png') no-repeat;
+    background-size: .4rem .4rem;
+}
+
+.content {
+    /*overflow-y: scroll;*/
+    padding: .88rem 0 1.2rem;
+    width: 100%;
+    height: auto;
+    /*-webkit-overflow-scrolling: touch;*/
+}
+
+.content.no_header {
+    padding-top: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: all;
+    z-index: 99;
+    background-color: #e3e3e3;
+    padding-bottom: .2rem;
+    height: 1rem;
+}
+
+.footer > a.on {
+    float: left;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    font-size: .26rem;
+    color: #2eb3ff;
+}
+
+.footer > a {
+    float: left;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    font-size: .26rem;
+    color: #999;
+}
+
+.footer > a i {
+    display: block;
+    margin: .1rem auto .02rem;
+    width: .5rem;
+    height: .45rem;
+    background-size: 100% 100% !important;
+}
+.footer > a i {
+    /*background-size: .5rem  !important;*/
+}
+.footer > a.power_home i {
+    /*background-position: 1px 1px;*/
+    background: url('../images/index_up.png') no-repeat;
+}
+
+.footer > a.power_home.on i {
+    /*background-position: 1px -.625rem;*/
+    background: url('../images/index_down.png') no-repeat;
+}
+
+.footer > a.power_station i {
+    /*background-position: 2px -1.32rem;*/
+    background: url('../images/station_up.png') no-repeat;
+
+}
+
+.footer > a.power_station.on i {
+    /*background-position: 2px -1.915rem;*/
+    background: url('../images/station_down.png') no-repeat;
+
+}
+
+.footer > a.power_map i {
+    /*background-position: 4px -2.32rem;*/
+    /*background-size: .75rem 4.5rem;*/
+    background: url('../images/map_up.png') no-repeat;
+
+}
+
+.footer > a.power_map.on i {
+    /*background-position: 4px -3rem;*/
+    /*background-size: .75rem 4.5rem;*/
+    background: url('../images/map_down.png') no-repeat;
+
+}
+
+.footer > a.power_analysis i {
+    /*background-position: 2px -4rem;*/
+    background: url('../images/warn_up.png') no-repeat;
+
+}
+
+.footer > a.power_analysis.on i {
+    /*background-position: 2px -4.57rem;*/
+    background: url('../images/warn_down.png') no-repeat;
+
+}
+
+.icon_power {
+    /*background: url('../images/icon_power.png') no-repeat;*/
+}
+
+/*===============================all elements, header, site right end===============================*/
+
+.db{
+    display: block;
+}
+
+.mb10{
+    margin-bottom: .1rem;
+}
+.mb20{
+    margin-bottom: .2rem;
+}
+.mb30{
+    margin-bottom: .3rem;
+}
+
+.mr30{
+    margin-right: .3rem;
+}
+
+.font24{
+    font-size: .24rem !important;
+}
+
+.bg_white{
+    background-color: #fff !important;
+}
+/*====================去掉引入jquerymobile后的loading元素===============*/
+.ui-loader-default { display:none}  
+.ui-mobile-viewport { border:none;}  
+.ui-page {padding: 0; margin: 0; outline: 0}  

@@ -1,0 +1,155 @@
+
+
+
+
+.cut_line {
+    height: 2px;
+    margin: 0 .35rem;
+    background-color: #fff;
+}
+
+.font_ter {
+    font-size: .24rem;
+}
+
+.power_top_wrap {
+    margin: 0 .5rem;
+    position: relative;
+}
+
+
+
+.power_capacity {
+    color: #00ab4e;
+}
+
+.power_totDay {
+    min-width: 1rem;
+    color: #e6ac00;
+}
+
+/*.power_section{
+    border-bottom: 1px solid #bcbcbc;
+}*/
+
+.power_finish {
+    color: #3289e1;
+}
+
+.power_section {
+    position: relative;
+    padding-bottom: .2rem;
+    margin-bottom: .2rem;
+    border-top:1px solid #bcbcbc;
+    border-bottom: 1px solid #bcbcbc;
+}
+
+.bg_white {
+    background-color: #fff;
+}
+
+.module {
+    height: 3.5rem;
+}
+
+.pie_wrap {
+    position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.pie_centerNum {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1.8rem;
+    max-width: 1.8rem;
+    height: .8rem;
+    margin-left: -.9rem;
+    margin-top: -.4rem;
+    text-align: center;
+    line-height: .8rem;
+
+}
+
+.save_ul {
+    line-height: 1rem;
+}
+
+.save_ul li{
+    border-bottom: 1px solid #dedede;
+    padding-left: .8rem;
+}
+
+.save_ul img {
+    width: .6rem;
+    height: .6rem;
+    margin-top: .1rem;
+    margin-right: .3rem;
+}
+
+.save_ul i, .save_ul .save_num {
+    width: 2.2rem;
+}
+
+.co2_text {
+    color: #7ecef4;
+}
+
+.car_text {
+    color: #ddb040;
+}
+
+.tree_text {
+    color: #21b127;
+}
+
+.so2_text {
+    color: #2e7ff9;
+}
+
+.building_title {
+    display: block;
+    margin-bottom: .1rem;
+}
+
+.build_item {
+    display: inline-block;
+    width: .68rem;
+    height: .3rem;
+}
+
+.build_item.finish {
+    background-color: #53e5fd;
+}
+
+.build_item.building {
+    background-color: #fd5845;
+}
+
+.build_item.undo {
+    background-color: #7b7c74;
+}
+
+.station_ul {
+    margin: .4rem 0 0 .2rem;
+    line-height: .4rem;
+}
+
+.header h3, .station_list {
+    min-width: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
