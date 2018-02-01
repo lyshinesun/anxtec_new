@@ -5,6 +5,7 @@ new Vue({
         //section1
         fd_all_power: '',        //累计总发电
 
+
         allTimer: null,
 
         myDate: new Date(),

@@ -36,7 +36,7 @@
             <div class="station_section_list">
                 <ul id="station_ul" class="state_ul">
                     <li v-for="(station,index) in stationArr">
-                        <a :href="'dialog/dialog_powerDetail.html?stationId=' + station.fdStationCode + '&fdCity=' + station.fdCity" class="clearfix" :id="station.fdCity">
+                        <a :href="'dialog/dialog_powerDetail.html?stationId=' + station.fdStationCode + '&fdCity=' + station.fdCity+ '&fdCityName=' + station.fdAddress" class="clearfix" :id="station.fdCity">
                             <div class="fl station_li_left">
                                 <i :class="'bot_tip pstype_' + station.psType"></i>
                                 <div class="pr img_wrap_box">

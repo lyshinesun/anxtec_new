@@ -118,6 +118,25 @@
                         var val = (d.getFullYear() + 1) + '0101000000';
                         return val;
                     },
+                    //当日2018-02-09
+                    currentDate: function () {
+                        var d = new Date();
+                        d.setHours(0, 0, 0);
+                        var month = d.getMonth() + 1;
+                        var day = d.getDate();
+                        if (month < 10) {
+                            month = "0" + month;
+                        }
+                        if (day < 10) {
+                            day = "0" + day;
+                        }
+                        // var val = d.getFullYear() + '-' + month + '-' + day 
+                        var val = {}
+                        val.toYear = d.getFullYear()
+                        val.toMonth = d.getFullYear() + '-' + month
+                        val.toDay = d.getFullYear() + '-' + month + '-' + day 
+                        return val;
+                    },
 
                     //格式验证
                     validate: {
@@ -212,7 +231,6 @@
                         var type = typeof value;
                         return !!value && (type == 'object' || type == 'function');
                     }
-
                     /**
                      * mycallback
                      * 1. 必传success<function>，服务器返回调用success
@@ -221,7 +239,6 @@
                     if (isObject(mycallback)) {
                         var error = mycallback.error;
                     }
-
                     if (async != undefined && async == true) {
                         $.ajaxSetup({
                             async: false
@@ -241,7 +258,6 @@
                         beforeSend: function (xhr) {
                             //xhr.setRequestHeader("Accept-Encoding", "gzip");
                             //xhr.setRequestHeader('Content-Type','application/json');
-
                         },
                         success: function (jsondata) {
                             mycallback(jsondata);

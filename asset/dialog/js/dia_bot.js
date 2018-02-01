@@ -9,6 +9,7 @@ new Vue({
         port:0,
         addr:0,
         fdDevName: '', //环监名字
+        fdCityName: '', //城市名字
 
         //环监详情
         dust:0, //灰尘量
@@ -28,22 +29,30 @@ new Vue({
         sweepTime: '无',//清扫时长
         exChargingTimes: '无',//充放电次数
         //定时器句柄
-        timerH: null
+        timerH: null,
+        timerS: null
 
     },
     methods: {
-        //定时刷新机器人状态
-        refreshRbtState: function (timer) {
+        //定时刷新机器人详情
+        refreshRbtInfo: function (timer) {
             var _this = this
             _this.timerH = setInterval (function () {
                 _this.getRotInfo()
             }, timer)
         },
+        //定时刷新机器人状态
+        refreshRbtState: function (timer) {
+            var _this = this
+            _this.timerS = setInterval (function () {
+                _this.getRbtState()
+            }, timer)
+        },
         //获取机器人运行状态
-       /* getRbtState: function () {
+        getRbtState: function () {
             var _this = this
              $.ajax({
-                url: vlm.serverAddr+"stationInfo/queryDtuSta", //请求地址
+                url: vlm.serverAddr+"stationInfo/getRobotStatu", //请求地址
                 dataType: "json",
                 type : "GET",
                 data:{
@@ -52,10 +61,9 @@ new Vue({
                     "robotID": _this.fdDevAddr.toString()
                 },
                 success:function(res){
-                    // console.log(res)
                     var data = res
                     if (data.code == 0) {
-                        switch (data.value) {
+                        switch (data.statu) {
                             case '0':
                             _this.runningState = '暂停中'
                             break;
@@ -67,10 +75,9 @@ new Vue({
                             break;
                         }
                     }
-                   //_this.runningState ='暂无数据',
                 }
             });
-        },*/
+        },
         /*获取url中的查询字符串的值*/
         getSearchString: function (key) {
           var str = location.search
@@ -89,6 +96,35 @@ new Vue({
             this.stationId = this.getSearchString('stationId') //电站id
             this.fdDevCode = this.getSearchString('fdDevCode') //电站厂房系统
             this.fdDevName = this.getSearchString('fdDevName')
+            this.fdCityName = this.getSearchString('fdCityName')
+        },
+        /*获取当前城市的温度*/
+        getCurrTemp: function (cityName) {
+            console.log(this.fdCityName)
+            console.log(cityName)
+            var _this = this,
+            url = 'http://api.map.baidu.com/telematics/v3/weather?location=' + cityName + '&output=json&ak=0h08YBBvVkr746zjlN9k0ftG94oMjEgM';
+            $.ajax({
+                url: url,
+                type: 'GET',
+                asyn: false,
+                data: '',
+                dataType: 'jsonp',
+                success: function (res) {
+                    if (res.status == 'success') {
+                        var weatherArr = res.results[0].weather_data,
+                        todayWthObj = weatherArr[0];//今天
+                        _this.wertherName = todayWthObj.weather;
+                        var tempArr = todayWthObj.temperature.split('~');
+                        tempArr[0] = vlm.Utils.trim(tempArr[0]);
+                        tempArr[1] = vlm.Utils.trim(tempArr[1]);
+                        _this.temperature = weatherArr[0].date.match(/(\-?)\d*℃/ig)[0]
+                    }
+                },
+                error: function (res) {
+                    alert(res.message);
+                }
+            });
         },
         //获取厂房信息
         getDevrelation:function () {
@@ -218,6 +254,7 @@ new Vue({
                 dataType:'json',
                 traditional: true,
                 data:{
+                    psid: _this.stationId, //电站id
                     devid: Number(_this.fdDevAddr), //机器人地址
                     type: 0, //1 操作码，0 停，1 启动 2 反转
                     port: _this.port,
@@ -252,6 +289,7 @@ new Vue({
                 dataType:'json',
                 traditional: true,
                 data:{
+                    psid: _this.stationId,
                     devid: Number(_this.fdDevAddr), //机器人地址
                     type: 1,  //1 操作码，0 停，1 启动 2 反转
                     port: _this.port,
@@ -288,6 +326,7 @@ new Vue({
                 dataType:'json',
                 traditional: true,
                 data:{
+                    psid: _this.stationId,
                     devid: Number(_this.fdDevAddr), //机器人地址
                     type: 2,  //1 操作码，0 停，1 启动 2 反转
                     port: _this.port,
@@ -382,7 +421,6 @@ new Vue({
         /*获取环监的新接口*/
         getEvrmtInfo: function () {
             var _this = this
-            console.log(111111)
             $.ajax({
                 url: vlm.serverAddr+"stationInfo/queryDtuAllInfo", //请求地址
                 dataType: "json",
@@ -401,17 +439,16 @@ new Vue({
         //处理环监返回数据
         filteEvrmtData: function (data) {
             var _this = this
-            console.log(data)
             _this.dust = data.dustAmount
             _this.illumination = data.currLllum
             _this.rainfall = data.rainfall
-            _this.temperature = data.currTemp
+            // _this.temperature = data.currTemp
             _this.humidity = data.currHumidity
         },
         /*获取机器人信息的新接口*/
         getRotInfo: function () {
             var _this = this
-            $('#preloader').show();
+            // $('#preloader').show();
              $.ajax({
                 url: vlm.serverAddr+"stationInfo/queryDtuAllInfo", //请求地址
                 dataType: "json",
@@ -423,11 +460,11 @@ new Vue({
                 },
                 success:function(res){
                     // console.log(res)
-                    $('#preloader').hide();
+                    // $('#preloader').hide();
                     if (res.code == 0) {
                         _this.filteRbtData(res.obj)
                     } else {
-                        _this.runningState ='暂无数据',
+                        // _this.runningState ='暂无数据',
                         _this.batteryCapacity = '无',
                         _this.cleanCount = '无',
                         _this.equipmentAlarm = '无',
@@ -439,17 +476,17 @@ new Vue({
         },
         filteRbtData: function (data) {
             var _this = this
-            switch (data.runStatu) {
-                case '0':
-                    _this.runningState = '停止中'
-                    break
-                case '1':
-                    _this.runningState = '正向运行中'
-                    break
-                case '2':
-                    _this.runningState = '反向运行中'
-                    break
-            }
+            // switch (data.runStatu) {
+            //     case '0':
+            //         _this.runningState = '停止中'
+            //         break
+            //     case '1':
+            //         _this.runningState = '正向运行中'
+            //         break
+            //     case '2':
+            //         _this.runningState = '反向运行中'
+            //         break
+            // }
             switch (data.warnStatu) {
                 case '0':
                     _this.equipmentAlarm = '正常' //告警状态
@@ -481,7 +518,9 @@ new Vue({
         this.getDevrelation(); //获取机器人信息
         // this.drawHumidity(this.dust);
         this.getEvrmtInfo()
-        this.getRotInfo()//页面挂载完成，请求机器人状态
+        this.getRotInfo()//页面挂载完成，请求机器人详情
+        this.getRbtState()//页面挂载完成，请求机器人状态
+        this.getCurrTemp(this.fdCityName)
     },
     watch: {
         fdDevAddr (newV, oldV) {
@@ -489,10 +528,12 @@ new Vue({
             this.getRotInfo()
             /*this.getRbtState()*/ //切换机器人立刻请求状态
             clearInterval(this.timerH)
-            this.refreshRbtState(5000)//当机器人id发生变化，定时刷新机器人状态
+            clearInterval(this.timerS)
+            this.refreshRbtInfo(60*1000)//当机器人id发生变化，定时刷新机器人详情
+            this.refreshRbtState(2000)//当机器人id发生变化，定时刷新机器人状态
         },
         runningState (newV, oldV) {
-            console.log(newV, oldV)
+            // console.log(newV, oldV)
         }
     }
 

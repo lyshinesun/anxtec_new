@@ -65,18 +65,65 @@
             </div>
             <div id="dayEchart" class="module bg_white"></div>
         </div>
-        <div id="power_promote_compare" class="power_section bg_white" v-show="hasPsData">
+        <div id="power_schedule_chart" class="power_section bg_white" v-show="hasPsData">
             <div class="power_head clearfix">
                 <span class="head_ver_line"></span>
-                <h3 class="fl">效益提升对比</h3>
-                <select name="psFacory" class="facSlecct fr">
-                    <option value="月"></option>
-                    <!-- <option value="日"></option>
-                    <option value="年"></option> -->
-                    <i class="right_arr downD"></i>
-                </select>
+                <h3 class="fl">月发电量</h3>
+                <input type="text" name="pwDate" id = "pwDate" class="dateSelector fr" v-model="currDate2" onfocus="this.blur()">
+                <i class="right_arr downD"></i>
             </div>
-            <div id="compareEchart" class="module bg_white"></div>
+            <div id="monthPw" class="module bg_white"></div>
+        </div>
+        <div class="power_section bg_white" v-show="hasPsData">
+            <div class="power_head clearfix">
+                <span class="head_ver_line"></span>
+                <h3 class="fl">已/未安装方阵日运行趋势</h3>
+                <select name="improveCompare" class="dataSelect fr" v-model="inverterSelector">
+                    <option value="0">发电量</option>
+                    <option value="1">交流功率</option>
+                </select>
+                <i class="right_arr downD"></i>
+            </div>
+            <p class="insall_info">
+                <sapn class="installed_line"></sapn>
+                <span class="installed">已安装</span>
+                <sapn class="uninstalled_line"></sapn>
+                <span class="uninstalled">未安装</span>
+            </p>
+            <div id="pwCompare" class="module bg_white"></div>
+        </div>
+        <div class="power_section bg_white" v-show="hasPsData">
+            <div class="power_head clearfix">
+                <span class="head_ver_line"></span>
+                <h3 class="fl">已/未安装方阵月发电量对比</h3>
+                <input type="text" name="mDate" id = "mDate" class="dateSelector fr" v-model="currDate1" onfocus="this.blur()">
+                <i class="right_arr downD"></i>
+            </div>
+            <p class="insall_info">
+                <sapn class="installed_line"></sapn>
+                <span class="typeName">已安装</span>
+                <sapn class="uninstalled_line"></sapn>
+                <span class="typeName">未安装</span>
+                <sapn class="pwMCompare_line"></sapn>
+                <span class="typeName">提升比</span>
+            </p>
+            <div id="pwMCompare" class="module bg_white"></div>
+            <div class="improve_txt">
+                <ul class="clearfix">
+                    <li>
+                        <p>月累计发电量</p>
+                        <p v-text='totalPw'></p>
+                    </li>
+                     <li>
+                        <p>月提升电量</p>
+                        <p v-text='addedPw'></p>
+                    </li>
+                     <li>
+                        <p>月平均提升比</p>
+                        <p v-text='avrgImpr'></p>
+                    </li>
+                </ul>
+            </div>
         </div>
         <section class="power_section bg_white">
             <div class="power_head clearfix">
@@ -104,7 +151,7 @@
             <div class="power_head clearfix">
                 <span class="head_ver_line"></span>
                 <h3 class="fl">选择厂房</h3>
-                <select name="psFacory" class="facSlecct fr" v-model="fdDevAddr">
+                <select name="psFacory" class="facSelect fr" v-model="fdDevAddr">
                     <option v-for="item in resList" :value="item.fdDevAddr"  v-text="item.fdDevName"></option>
                     <!-- <option value="1">参观样机2</option> -->
                 </select>
@@ -124,7 +171,7 @@
             <div class="station_section_list">
                 <ul id="station_ul" class="state_ul clearfix" >
                     <li v-for="item in envrmtBoxList">
-                        <a :href="'dialog_bot.html?stationId='+ stationId +'&fdDevCode=' + item.fdDevCode + '&rbtDtu=' + item.fdDevAddr + '&port=' + fdCity + '&fdDevName=' + item.fdDevName" class="clearfix">
+                        <a :href="'dialog_bot.html?stationId='+ stationId +'&fdDevCode=' + item.fdDevCode + '&rbtDtu=' + item.fdDevAddr + '&port=' + fdCity + '&fdDevName=' + item.fdDevName+ '&fdCityName=' + stationCityName" class="clearfix">
                             <div class="fl station_li_left">
                                 <!-- <i :class="'bot_tip pstype_' + station.psType"></i> -->
                                 <div class="pr img_wrap_box">
@@ -138,7 +185,7 @@
                                 <li v-for="info in item.list" ><span v-if="info.fdValueType == 831" v-text="'当前湿度:'  + info.fdValue + '%'"></span></li>
                                 <li v-for="info in item.list"><span  v-if="info.fdValueType == 84" v-text="'当前光照度:'  + info.fdValue + 'LUX'"></span></li>
                                 <li><span v-text="'机器人数量:' + item.rotCount"></span></li> -->
-                                <li><span v-text="'当前温度：'  + item.list.currTemp + '°'"></span></li>
+                                <li><span v-text="'当前温度：'  + temperature "></span></li>
                                 <li><span v-text="'当前湿度：'  + item.list.currHumidity + '%'"></span></li>
                                 <li><span v-text="'当前光照度：'  + item.list.currLllum + 'LUX'"></span></li>
                                 <li>机器人数量 : <span v-text="item.rotCount ? item.rotCount : 0"></span></li>
@@ -155,9 +202,6 @@
                     </li>
                 </ul>
             </div>
-
-
-
         </section>
         <section class="power_section bg_white">
             <div class="power_head clearfix">
@@ -182,6 +226,7 @@
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/plugin/echarts_new/echarts.min.js"></script>
 <script src="../js/plugin/echart/echarts.js"></script>
+<script src="../js/plugin/datePicker/datePicker.js"></script>
 <script src="js/dia_powerDetail.js"></script>
 
 </body>

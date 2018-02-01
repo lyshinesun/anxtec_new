@@ -45,6 +45,7 @@ new Vue({
             });
 
         },
+
         //获取地图坐标
         getMapByUser: function () {
             var _this = this;
